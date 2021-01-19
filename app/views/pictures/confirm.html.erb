@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Confirming Picture</h1>
+  <%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
+    <p>
+      <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+    </p>
+    <%= form.hidden_field :image_cache %>
+    <p>
+      <%= @picture.content %>
+    </p>
+    <%= form.hidden_field :content %>
+    <div class="actions">
+      <%= form.submit "投稿する" %>
+    </div>
+  <% end %>
+  <%= form_with(model:@picture, url:new_picture_path, local:true, method:"get") do |form| %>
+    <%= form.hidden_field :image_cache %>
+    <%= form.hidden_field :content %>
+    <div class="actions">
+      <%= form.submit "戻る", name: "back" %>
+    </div>
+  <% end %>
+</div>
