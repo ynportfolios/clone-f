@@ -1,7 +1,7 @@
 <div class="container">
   <p>
     <strong>Image:</strong>
-    <%= image_tag @picture.image.url %>
+    <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
   </p>
 
   <p>
