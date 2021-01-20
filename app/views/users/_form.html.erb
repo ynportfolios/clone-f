@@ -20,6 +20,13 @@
       <%= f.email_field :email %>
     </div>
     <div class="form-group">
+      <%= f.label :user_image %>
+      <p>
+        <%= image_tag(@user.user_image.url) if @user.user_image && @user.user_image.url %>
+      </p>
+      <%= f.file_field :user_image %>
+    </div>
+    <div class="form-group">
       <%= f.label :password %>
       <br>
       <%= f.password_field :password %>
