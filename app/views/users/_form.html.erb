@@ -36,7 +36,16 @@
       <br>
       <%= f.password_field :password_confirmation %>
     </div>
+
+    <% if action_name == 'new' || action_name == 'create' %>
       <div class="form-group">
-      <%= f.submit "ユーザ登録" %>
-    </div>
+        <%= f.submit "ユーザ登録" %>
+      </div>
+    <% elsif action_name == 'edit' %>
+      <% if current_user && @user.id == current_user.id %>
+        <div class="form-group">
+          <%= f.submit "ユーザ登録" %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
