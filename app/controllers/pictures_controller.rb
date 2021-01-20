@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :author_judge, only: [:update]
 
   # GET /pictures
   # GET /pictures.json
@@ -78,5 +79,11 @@ class PicturesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def picture_params
     params.require(:picture).permit(:image, :image_cache, :content, :user_id)
+  end
+
+  def author_judge
+    unless current_user && @picture.user_id == current_user.id
+      redirect_to root_path, notice: '他人の投稿は編集できません！'
+    end
   end
 end

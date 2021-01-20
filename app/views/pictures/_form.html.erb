@@ -25,9 +25,19 @@
     <%= form.text_area :content %>
   </div>
 
-  <%= form.hidden_field :user_id, :value => current_user.id %>
+  <% if action_name == 'new' || action_name == 'create' %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% elsif action_name == 'edit' %>
+    <%= form.hidden_field :user_id, :value => @picture.user_id %>
+
+    <% if current_user && @picture.user_id == current_user.id %>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
