@@ -5,4 +5,6 @@ class Picture < ApplicationRecord
 
   validates :image, presence: true
   validates :content, presence: true
+
+  has_many :favorites, dependent: :destroy
 end
